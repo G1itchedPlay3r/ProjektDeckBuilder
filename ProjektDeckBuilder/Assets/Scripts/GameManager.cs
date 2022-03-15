@@ -7,23 +7,33 @@ public class GameManager : MonoBehaviour
 {
     private GameStates State;
 
+    [Header("List")]
     public List<GameObject> deck = new List<GameObject>();
     public List<GameObject> discardPile = new List<GameObject>();
+    public List<GameObject> enemyDeck = new List<GameObject>();
+    public List<GameObject> enemyDiscard = new List<GameObject>();
+    
+    [Header("Transform")]
     public Transform[] cardSlots;
-    public bool[] avialiableCardSlots;
-
+    
     public static GameManager Instance;
 
-    public int PlayerOneHP;
-    public int PlayerTwoHP;
+    [Header("HP")]
+    public int PlayerHP;
+    public int EnemyHP;
 
-    public TextMeshProUGUI P1HP;
-    public TextMeshProUGUI P2HP;
+    [Header("Text")]
+    public TextMeshProUGUI PlHP;
+    public TextMeshProUGUI EmHP;
     public TextMeshProUGUI Winner;
     public TextMeshProUGUI DeckSize;
     public TextMeshProUGUI DiscardPile;
 
+    [Header("Bool")]
     public bool Playing = true;
+    public bool Attacking = false;
+    public bool[] avialiableCardSlots;
+
 
     public void DrawCard()
     {
@@ -36,6 +46,7 @@ public class GameManager : MonoBehaviour
                 if (avialiableCardSlots[i] == true)
                 {
                     randCard.SetActive(true);
+                    Attacking = false;
                     //randCard.GetComponent<CardFill>().handIndex = i;
 
                     randCard.transform.position = cardSlots[i].position;
@@ -46,6 +57,16 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void EnemyDraw()
+    {
+        if (Attacking == true)
+        {
+            GameObject randEnemy = enemyDeck[Random.Range(enemyDeck.Count,enemyDeck.Count)];
+            enemyDeck.Remove(randEnemy);
+            return;
+        }
+    }
     
     public void Shuffle()
     {
@@ -54,6 +75,12 @@ public class GameManager : MonoBehaviour
             foreach (GameObject card in discardPile)
             {
                 deck.Add(card);
+                
+            }
+            discardPile.Clear();
+            foreach (GameObject enemyCard in enemyDiscard)
+            {
+                enemyDeck.Add(enemyCard);
             }
             discardPile.Clear();
         }
@@ -75,26 +102,17 @@ public class GameManager : MonoBehaviour
         DeckSize.text = deck.Count.ToString();
         DiscardPile.text = discardPile.Count.ToString();
 
-        P1HP.text = "P1: " + PlayerOneHP.ToString();
-        P2HP.text = "P2: " + PlayerTwoHP.ToString();
+        PlHP.text = "P1: " + PlayerHP.ToString();
+        EmHP.text = "P2: " + EnemyHP.ToString();
 
-        if (Input.GetMouseButtonDown(4) && Playing == true)
+        if (PlayerHP == 0)
         {
-            PlayerOneHP -= 1;
-        }
-        if (Input.GetMouseButtonDown(3) && Playing == true)
-        {
-            PlayerTwoHP -= 1;
-        }
-
-        if (PlayerOneHP == 0)
-        {
-            Winner.text = "Player 2 Won";
+            Winner.text = "Player Won";
             Playing = false;
         }
-        if (PlayerTwoHP == 0)
+        if (EnemyHP == 0)
         {
-            Winner.text = "Player 1 Won";
+            Winner.text = "Enemy Won";
             Playing = false;
         }
     }

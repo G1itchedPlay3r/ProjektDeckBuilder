@@ -7,7 +7,7 @@ public class PlayerTwo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("GameManager").GetComponent<GameManager>().PlayerTwoHP = 50;
+        GameObject.Find("GameManager").GetComponent<GameManager>().EnemyHP = 50;
     }
 
     // Update is called once per frame

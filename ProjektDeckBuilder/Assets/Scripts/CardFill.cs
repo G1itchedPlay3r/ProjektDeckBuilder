@@ -45,6 +45,8 @@ public class CardFill : MonoBehaviour
             hasBeenPlayed = true;
             gm.avialiableCardSlots[handIndex] = true;
             Invoke("MoveToDiscardPile", 5f);
+            gm.Attacking = true;
+            hasBeenPlayed = false;
         }
     }
 
