@@ -6,6 +6,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     private GameStates State;
+    public static GameManager Instance;
+    public static int PlayerDamage;
+    public static int EnemyDamage;
 
     [Header("List")]
     public List<GameObject> deck = new List<GameObject>();
@@ -15,12 +18,6 @@ public class GameManager : MonoBehaviour
     
     [Header("Transform")]
     public Transform[] cardSlots;
-    
-    public static GameManager Instance;
-
-    [Header("HP")]
-    public int PlayerHP;
-    public int EnemyHP;
 
     [Header("Text")]
     public TextMeshProUGUI PlHP;
@@ -32,8 +29,8 @@ public class GameManager : MonoBehaviour
     [Header("Bool")]
     public bool Playing = true;
     public bool Attacking = false;
+    public static bool Damage; 
     public bool[] avialiableCardSlots;
-
 
     public void DrawCard()
     {
@@ -64,6 +61,8 @@ public class GameManager : MonoBehaviour
         {
             GameObject randEnemy = enemyDeck[Random.Range(enemyDeck.Count,enemyDeck.Count)];
             enemyDeck.Remove(randEnemy);
+            Damage = true;
+            EnemyCard.damage = EnemyDamage;
             return;
         }
     }
@@ -102,15 +101,15 @@ public class GameManager : MonoBehaviour
         DeckSize.text = deck.Count.ToString();
         DiscardPile.text = discardPile.Count.ToString();
 
-        PlHP.text = "P1: " + PlayerHP.ToString();
-        EmHP.text = "P2: " + EnemyHP.ToString();
+        PlHP.text = PlayerOne.currentHealth.ToString();
+        EmHP.text = PlayerTwo.currentHealth.ToString();
 
-        if (PlayerHP == 0)
+        if (PlayerOne.currentHealth == 0)
         {
             Winner.text = "Player Won";
             Playing = false;
         }
-        if (EnemyHP == 0)
+        if (PlayerTwo.currentHealth == 0)
         {
             Winner.text = "Enemy Won";
             Playing = false;

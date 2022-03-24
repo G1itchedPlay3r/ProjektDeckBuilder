@@ -21,6 +21,8 @@ public class CardFill : MonoBehaviour
     public bool hasBeenPlayed;
     public Transform Play;
     public Transform Discard;
+    public static int damage;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,10 @@ public class CardFill : MonoBehaviour
         DamageAndHealth.GetComponent<TextMeshProUGUI>().text = cardObj.Strength.ToString();
         Name.GetComponent<TextMeshProUGUI>().text = cardObj.Name;
         Cost.GetComponent<TextMeshProUGUI>().text = cardObj.Cost.ToString() + " Mana";
+    }
+    private void Update()
+    {
+        damage += cardObj.Strength;
     }
 
     private void OnMouseDown()

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardImage: {fileID: 0}
   CardBackGround: {fileID: 21300000, guid: a5933bf15c777444fa292c6fcbd09b94, type: 3}
-  Strength: 0
-  Health: 0
+  Strength: 10
   Cost: 0
   Description: 
   Name: PlaceHolder

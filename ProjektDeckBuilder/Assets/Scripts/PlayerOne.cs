@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class PlayerOne : MonoBehaviour
 {
+    public int maxHealth = 100;
+    public static int currentHealth;
+
+    public HealthPlayer healthbar;
+    
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("GameManager").GetComponent<GameManager>().PlayerHP = 50;
+        currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if (GameManager.Damage == true)
+        {
+            TakeDamage(GameManager.EnemyDamage);
+            GameManager.Damage = false;
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthbar.SetHealth(currentHealth);
     }
 }
