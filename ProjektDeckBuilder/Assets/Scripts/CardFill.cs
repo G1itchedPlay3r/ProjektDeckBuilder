@@ -21,7 +21,7 @@ public class CardFill : MonoBehaviour
     public bool hasBeenPlayed;
     public Transform Play;
     public Transform Discard;
-    public static int damage;
+    public int damage;
     
 
     // Start is called before the first frame update

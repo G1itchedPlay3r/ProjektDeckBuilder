@@ -6,6 +6,9 @@ public class PlayerOne : MonoBehaviour
 {
     public int maxHealth = 100;
     public static int currentHealth;
+    public int TakingDmg;
+    public GameManager gm;
+    public TakingDMG DMG;
 
     public HealthPlayer healthbar;
     
@@ -19,11 +22,10 @@ public class PlayerOne : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (GameManager.Damage == true)
+        TakingDmg = DMG.EnemyDMG;
+        if (DMG.DMG == true)
         {
-            TakeDamage(GameManager.EnemyDamage);
-            GameManager.Damage = false;
+            TakeDamage(TakingDmg);
         }
     }
 

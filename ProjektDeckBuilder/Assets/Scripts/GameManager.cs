@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     private GameStates State;
     public static GameManager Instance;
-    public static int PlayerDamage;
-    public static int EnemyDamage;
 
     [Header("List")]
     public List<GameObject> deck = new List<GameObject>();
@@ -28,8 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Bool")]
     public bool Playing = true;
-    public bool Attacking = false;
-    public static bool Damage; 
+    public bool Attacking;
     public bool[] avialiableCardSlots;
 
     public void DrawCard()
@@ -61,8 +58,6 @@ public class GameManager : MonoBehaviour
         {
             GameObject randEnemy = enemyDeck[Random.Range(enemyDeck.Count,enemyDeck.Count)];
             enemyDeck.Remove(randEnemy);
-            Damage = true;
-            EnemyCard.damage = EnemyDamage;
             return;
         }
     }
