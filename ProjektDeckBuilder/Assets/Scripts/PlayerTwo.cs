@@ -13,19 +13,20 @@ public class PlayerTwo : MonoBehaviour
     public HealthPlayer healthbar;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         TakingDmg = DMG.PlayerDMG;
         if (DMG.DMG == true)
         {
             TakeDamage(TakingDmg);
+            DMG.DMG = false;
         }
     }
 

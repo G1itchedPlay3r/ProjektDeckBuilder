@@ -12,14 +12,13 @@ public class PlayerCard : MonoBehaviour
     private void FixedUpdate()
     {
         damage = card.GetComponentInChildren<CardFill>().damage;
+        
     }
     void Update()
     {
         if (gm.Attacking == true)
         {
             DMG.PlayerDMG = damage;
-
-            gm.Attacking = false;
         }
     }
 }

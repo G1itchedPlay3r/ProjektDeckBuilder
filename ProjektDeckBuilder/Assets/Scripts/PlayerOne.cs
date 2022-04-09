@@ -13,7 +13,7 @@ public class PlayerOne : MonoBehaviour
     public HealthPlayer healthbar;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
@@ -26,6 +26,7 @@ public class PlayerOne : MonoBehaviour
         if (DMG.DMG == true)
         {
             TakeDamage(TakingDmg);
+            DMG.DMG = false;
         }
     }
 

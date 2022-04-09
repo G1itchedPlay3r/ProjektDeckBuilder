@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Bool")]
     public bool Playing = true;
-    public bool Attacking;
+    public bool Attacking = false;
     public bool[] avialiableCardSlots;
 
     public void DrawCard()
