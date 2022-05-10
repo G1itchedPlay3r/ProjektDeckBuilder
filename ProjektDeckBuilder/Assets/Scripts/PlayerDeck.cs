@@ -8,57 +8,48 @@ public class PlayerDeck : MonoBehaviour
     public List<Card> container = new List<Card>();
 
     public int x;
-    public int deckSize;
+    public int decksize;
 
     public GameObject cardInDeck1;
     public GameObject cardInDeck2;
     public GameObject cardInDeck3;
-    public GameObject cardInDeck4;
 
     // Start is called before the first frame update
     void Start()
     {
         x = 0;
-        deckSize = 40;
 
-        for (int i = 0; i < deckSize; i++)
+        for (int i = 0; i < 40; i++)
         {
-                Deck[i] = CardDataBase.cardList[x];
-                x = Random.Range(1, 4);
+            x = Random.Range(1, 4);
+            Deck[i] = CardDataBase.cardList[x];
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (deckSize < 30)
+        if (decksize < 30)
         {
             cardInDeck1.SetActive(false);
         }
-        if (deckSize < 20)
+        if (decksize < 15)
         {
             cardInDeck2.SetActive(false);
         }
-        if (deckSize < 2)
+        if (decksize < 2)
         {
             cardInDeck3.SetActive(false);
-        }
-        if (deckSize < 1)
-        {
-            cardInDeck4.SetActive(false);
         }
     }
 
     public void Shuffle()
     {
-        for (int i = 0; i < deckSize; i++)
+        for (int i = 0; i < decksize; i++)
         {
-
-                container[0] = Deck[1];
-                int randomIndex = Random.Range(i, deckSize);
-                Deck[i] = Deck[randomIndex];
-                Deck[randomIndex] = container[0];
-        
+            container[0] = Deck[i];
+            int randomIndex = Random.Range(i, decksize);
+            Deck[randomIndex] = container[0];
         }
     }
 }

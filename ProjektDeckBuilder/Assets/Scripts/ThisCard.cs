@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +7,7 @@ using TMPro;
 
 public class ThisCard : MonoBehaviour
 {
+    
     public List<Card> thisCard = new List<Card>();
     public int thisId;
 
