@@ -9,6 +9,7 @@ public class ThisCard : MonoBehaviour
 {
     
     public List<Card> thisCard = new List<Card>();
+    public List<Card> displayCard = new List<Card>();
     public int thisId;
 
     public int id;
@@ -29,23 +30,44 @@ public class ThisCard : MonoBehaviour
     public bool cardBack;
     public static bool staticCardBack;
 
+    public GameObject Hand;
+    public int numberOfCardsInDeck;
+
     // Start is called before the first frame update
     void Start()
     {
-        thisCard[0] = CardDataBase.cardList[thisId]; 
+        numberOfCardsInDeck = PlayerDeck.decksize;
+
+
+        thisCard[0] = CardDataBase.cardList[thisId];
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        id = thisCard[0].id;
-        cardName = thisCard[0].cardName;
-        cost = thisCard[0].cost;
-        power = thisCard[0].power;
-        cardDes = thisCard[0].cardDes;
+        Hand = GameObject.Find("Hand");
 
-        thisSprite = thisCard[0].thisImage;
+        if (this.transform.parent == Hand.transform.parent)
+        {
+            cardBack = false;
+        }
+        if (this.tag == "Clone")
+        {
+            displayCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck - 1];
+            numberOfCardsInDeck -= 1;
+            PlayerDeck.decksize -= 1;
+            cardBack = false;
+            this.tag = "Untagged";
+        }
 
+        id = thisCard[thisId].id;
+        cardName = thisCard[thisId].cardName;
+        cost = thisCard[thisId].cost;
+        power = thisCard[thisId].power;
+        cardDes = thisCard[thisId].cardDes;
+
+        thisSprite = thisCard[thisId].thisImage;
         nameText.text = "" + cardName;
         costText.text = "" + cost;
         powerText.text = "" + power;
