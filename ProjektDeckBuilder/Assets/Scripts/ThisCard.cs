@@ -38,13 +38,7 @@ public class ThisCard : MonoBehaviour
     {
         numberOfCardsInDeck = PlayerDeck.decksize;
 
-<<<<<<< Updated upstream
         thisId = Random.Range(4, 13);
-
-=======
-<<<<<<< HEAD
-        thisId = Random.Range(1,4);
->>>>>>> Stashed changes
 
         thisCard[0] = CardDataBase.cardList[thisId];
 
