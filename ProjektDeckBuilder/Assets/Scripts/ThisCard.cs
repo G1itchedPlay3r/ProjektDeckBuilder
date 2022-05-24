@@ -38,6 +38,8 @@ public class ThisCard : MonoBehaviour
     {
         numberOfCardsInDeck = PlayerDeck.decksize;
 
+        thisId = Random.Range(4, 13);
+
 
         thisCard[0] = CardDataBase.cardList[thisId];
 
@@ -54,20 +56,20 @@ public class ThisCard : MonoBehaviour
         }
         if (this.tag == "Clone")
         {
-            displayCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck - 1];
+            //displayCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck - 1];
             numberOfCardsInDeck -= 1;
             PlayerDeck.decksize -= 1;
             cardBack = false;
             this.tag = "Untagged";
         }
 
-        id = thisCard[thisId].id;
-        cardName = thisCard[thisId].cardName;
-        cost = thisCard[thisId].cost;
-        power = thisCard[thisId].power;
-        cardDes = thisCard[thisId].cardDes;
+        id = thisCard[0].id;
+        cardName = thisCard[0].cardName;
+        cost = thisCard[0].cost;
+        power = thisCard[0].power;
+        cardDes = thisCard[0].cardDes;
 
-        thisSprite = thisCard[thisId].thisImage;
+        thisSprite = thisCard[0].thisImage;
         nameText.text = "" + cardName;
         costText.text = "" + cost;
         powerText.text = "" + power;
